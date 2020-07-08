@@ -6,7 +6,7 @@ ob_start();
 
 ?>
 Ici la page d'accueil
-
+<img src="src/public/images/plante.jpg">
 
 <?php
 $content = ob_get_clean();

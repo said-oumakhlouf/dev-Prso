@@ -27,11 +27,13 @@ try{
                 } elseif($url[1] === 'a') {
                     $livreController->ajoutLivre();
                 } elseif($url[1] === 'm') {
-                    echo "modifier un livre";
+                    $livreController->modificationLivre($url[2]);
                 } elseif($url[1] === 's') {
                     $livreController->suppressionLivre($url[2]);
                 } elseif($url[1] === 'av') {
                     $livreController->ajoutLivreValidation();
+                } elseif($url[1] === 'mv') {
+                    $livreController->modificationLivreValidation();
                 } else {
                     throw new \Exception("La page n'existe pas !");
                 }

@@ -44,6 +44,26 @@ class LivresController
         \header('Location: '. URL . 'livres');
     }
 
+    public function modificationLivre($id){
+        $livre = $this->livreManager->getLivreById($id);
+        require 'src/views/modifierLivre.view.php';
+    }
+
+    public function modificationLivreValidation(){
+        $imageActuelle = $this->livreManager->getLivreById($_POST['identifiant'])->getImage();
+        $file = $_FILES['image'];
+
+        if($file['size'] > 0){
+            \unlink("src/public/images/".$imageActuelle);
+            $repertoire = "src/public/images/";
+            $nomImageToAdd = $this->ajoutImage($file,$repertoire);
+        } else {
+            $nomImageToAdd = $imageActuelle;
+        }
+        $this->livreManager->modificationLivreBd($_POST['identifiant'], $_POST['titre'], $_POST['nbPages'], $nomImageToAdd );
+        \header('Location: '. URL . 'livres');
+    }
+
     private function ajoutImage($file, $dir){
         if(!isset($file['name']) || empty($file['name']))
             throw new \Exception("Vous devez indiquer une image");
