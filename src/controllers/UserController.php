@@ -26,6 +26,8 @@ class UserController
             if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['email2']) && !empty($_POST['password']) && !empty($_POST['confirm_password']))
             {
                 $usernameLength = strlen($username);
+                $passwordLength = strlen($password);
+
                 if($usernameLength <= 60)
                 {
                     $userManager = new UserManager;
@@ -38,15 +40,22 @@ class UserController
                                 $userManager = new UserManager;
                                 if($userManager->getEmail($email) == 0)
                                 {
-                                    if($password == $confirm_password)
+                                    if($passwordLength <= 6)
                                     {
-                                        $userManager = new UserManager;
-                                        $userManager->register($username, $email,$password);
-                                        $success = "Votre compte à bien été crée !";
+                                        if($password == $confirm_password)
+                                        {
+                                            $userManager = new UserManager;
+                                            $userManager->register($username, $email,$password);
+                                            $success = "Votre compte à bien été crée !";
+                                        }
+                                        else
+                                        {
+                                            $erreur = "Vos mots de passes ne correspondent pas !";
+                                        }
                                     }
-                                    else
+                                    else 
                                     {
-                                        $erreur = "Vos mots de passes ne correspondent pas !";
+                                        $erreur = "Le mot de passe doit avoir au moins 6 caractères !";
                                     }
                                 }
                                 else 

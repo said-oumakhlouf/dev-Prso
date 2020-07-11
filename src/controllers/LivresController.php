@@ -18,6 +18,7 @@ class LivresController
     public function afficherLivres(){
         $livres = $this->livreManager->getLivres();
         require 'src/views/livres.view.php';
+        unset($_SESSION['alert']);
     }
 
     public function afficherLivre($id){
@@ -34,6 +35,12 @@ class LivresController
         $repertoire = "src/public/images/";
         $nomImageAjoute = $this->ajoutImage($file,$repertoire);
         $this->livreManager->ajoutLivreBd($_POST['titre'], $_POST['nbPages'],$nomImageAjoute);
+        
+        $_SESSION['alert'] = [
+            "type" => "success",
+            "msg" => "Ajout réalisé"
+        ];
+
         \header('Location: '. URL . 'livres');
     }
 
@@ -41,6 +48,10 @@ class LivresController
         $nomImage = $this->livreManager->getLivreById($id)->getImage();
         \unlink("src/public/images/".$nomImage);
         $this->livreManager->suppressionLivreBd($id);
+        $_SESSION['alert'] = [
+            "type" => "success",
+            "msg" => "Suppression réalisé"
+        ];
         \header('Location: '. URL . 'livres');
     }
 
@@ -61,6 +72,10 @@ class LivresController
             $nomImageToAdd = $imageActuelle;
         }
         $this->livreManager->modificationLivreBd($_POST['identifiant'], $_POST['titre'], $_POST['nbPages'], $nomImageToAdd );
+        $_SESSION['alert'] = [
+            "type" => "success",
+            "msg" => "Modification réalisé"
+        ];
         \header('Location: '. URL . 'livres');
     }
 

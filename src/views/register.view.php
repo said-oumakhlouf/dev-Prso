@@ -7,12 +7,11 @@
                     <input type="email" class="form-control" name="email2" id="email2" placeholder="Confirmez votre email" value="<?php if(isset($email2)) {echo $email2;} ?>">
                     <input type="password" class="form-control" name="password" id="password" placeholder="Votre mot de passe">
                     <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirmez votre mot de passe">
-                    <input type="submit"  name="submit" class="btn btn-primary" value="S'inscrire">
+                    <input type="submit"  name="submit" class="btn btn-info" value="S'inscrire">
                 </form>
                 <?php if(isset($erreur)){echo '<font color="red">'.$erreur ."</font>";} ?>
                 <?php if(isset($success)){echo '<font color="green">'.$success ."</font>";} ?>
             </div>
-        <p>Vous avez déjà un compte ? <a href="login">Connectez-vous !</a></p>
     </div>
 <?php 
 $content = ob_get_clean(); 

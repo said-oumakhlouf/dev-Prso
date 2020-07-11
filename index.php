@@ -1,7 +1,7 @@
 <?php
 session_start();
 define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http")."://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
-use App\Exception;
+
 use App\Controllers\UserController;
 use App\Controllers\LivresController;
 
@@ -51,5 +51,6 @@ try{
     }
 }
 catch(\Exception $e){
-    echo $e->getMessage();
+    $msg = $e->getMessage();
+    require 'src/views/error.view.php';
 }

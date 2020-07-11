@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Models\Livre;
+use Exception;
 
 class LivreManager extends Model
 {
@@ -30,6 +31,7 @@ class LivreManager extends Model
                 return $this->livres[$i];
             }
         }
+        throw new \Exception("Le livre n'existe pas !");
     }
 
     public function ajoutLivreBd($titre, $nbPages,$image){

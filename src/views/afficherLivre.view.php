@@ -9,6 +9,7 @@ ob_start();
     <div class="col-6">
         <p>Titre : <?= $livre->getTitre(); ?></p>
         <p>Nombres de Pages : <?= $livre->getNbPages(); ?></p>
+        <p>Description : </p>
     </div>
 </div>
 

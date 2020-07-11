@@ -4,12 +4,11 @@
                 <form action="check_login" method="post">
                     <input type="text" class="form-control" name="userConnect" id="userConnect" placeholder="Votre pseudo" value="<?php if(isset($userConnect)){echo $userConnect;} ?>">
                     <input type="password" class="form-control" name="passConnect" id="passConnect" placeholder="Votre mot de passe">
-                    <input type="submit"  name="submit" class="btn btn-primary" value="Se connecter">
+                    <input type="submit"  name="submit" class="btn btn-info" value="Se connecter">
                 </form>
                 <?php if(isset($erreur)){echo '<font color="red">'.$erreur ."</font>";} ?>
                 <?php if(isset($success)){echo '<font color="green">'.$success ."</font>";} ?>
         </div>
-        <p>Vous n'avez pas de compte ? <a href="register">Inscrivez-vous !</a></p>
     </div>
 
 <?php 
